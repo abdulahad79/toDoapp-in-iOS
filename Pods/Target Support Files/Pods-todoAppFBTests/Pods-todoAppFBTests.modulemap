@@ -1,0 +1,6 @@
+framework module Pods_todoAppFBTests {
+  umbrella header "Pods-todoAppFBTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
