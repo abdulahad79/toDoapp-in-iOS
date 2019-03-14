@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Kingfisher
+import FirebaseStorage
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController,UINavigationControllerDelegate {
 
     @IBOutlet weak var diTitle: UILabel!
     @IBOutlet weak var diCost: UILabel!
@@ -16,28 +18,23 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var diDescription: UILabel!
     @IBOutlet weak var diImgView: UIImageView!
     
-    //var model: Chatmodel;
-    
+    var model: Chatmodel = Chatmodel();
+
     override func viewDidLoad() {
         super.viewDidLoad()
-//        diTitle.text = model.name
-//        diCost.text = model.cost
-//        diLocation.text = model.location
-//        diDescription.text = model.description
-//        
         
-        // Do any additional setup after loading the view.
+        diTitle.text = model.name
+        diCost.text =  model.cost
+        diLocation.text =  model.location
+        diDescription.text =  model.description
+        
+            let url = URL(string: (model.profileURL)!)
+            if let url = url as? URL{
+                KingfisherManager.shared.retrieveImage(with: url as! Resource, options: nil, progressBlock: nil) { (image , error , cache, imageURL) in
+                    self.diImgView.image = image
+                    self.diImgView.kf.indicatorType = .activity
+                }
+            }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

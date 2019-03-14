@@ -8,6 +8,9 @@
 
 import Foundation
 import UIKit
+import FirebaseStorage
+import FirebaseDatabase
+
 
 class Chatmodel {
     var id: String?
@@ -17,7 +20,10 @@ class Chatmodel {
     var description: String?
     var profileURL: String?
     
-    init(id:String, name:String, cost:String,description: String,location: String,profileURL:String) {
+    //convernience is used for easiet way to initialize again n again
+    
+    convenience init(id:String, name:String, cost:String,description: String,location: String,profileURL:String) {
+        self.init()
         self.id = id
         self.name = name
         self.cost = cost
